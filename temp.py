@@ -1,29 +1,32 @@
-TEST_DATA = [
+# Тестовые данные.
+TEST_DATA: list[tuple[int, str, bool]] = [
     (44, 'success', True),
     (16, 'failure', True),
     (4, 'success', False),
     (21, 'failure', False),
 ]
 
-BONUS = 1.1
-ANTIBONUS = 0.8
+
+BONUS: float = 1.1
+ANTIBONUS: float = 0.8
 
 
-def add_rep(current_rep, rep_points, buf_effect):
+def add_rep(current_rep: float, rep_points: float, buf_effect: bool) -> float:
     current_rep += rep_points
     if buf_effect:
         return current_rep * BONUS
     return current_rep
 
 
-def remove_rep(current_rep, rep_points, debuf_effect):
+def remove_rep(current_rep: float, rep_points: float,
+               debuf_effect: bool) -> float:
     current_rep -= rep_points
     if debuf_effect:
         return current_rep * ANTIBONUS
     return current_rep
 
 
-def main(duel_res):
+def main(duel_res: list) -> str:
     current_rep = 0.0
     for rep, result, effect in duel_res:
         if result == 'success':
